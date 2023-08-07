@@ -9,10 +9,12 @@ To run this program, you need to have the following installed on your system:
 1. Python (3.6 or higher)
 2. `pydub` library
 
-You can install the `pydub` library using `pip`:
+You can install the dependencies using `pip`:
 
-pip install pydub
-
+```cmd
+pip install -r requirements.txt
+```
+Note: You also need to have FFmpeg installed on your system to enable audio file operations in the pydub library. If you don't have FFmpeg installed, please refer to the [FFmpeg repository](https://github.com/FFmpeg/FFmpeg) for installation instructions.
 
 ## How to Use
 
@@ -21,26 +23,34 @@ pip install pydub
 3. Open a terminal or command prompt in the repository directory.
 4. Run the program using the following command:
 
+```cmd
 python audio_splitter.py
-
+```
 
 ## Important Notes
 
 - The audio file must be at least 10 seconds long for the program to work correctly.
 - The program can only process one audio file at a time. Make sure you have only one audio file in the "audio_to_split" folder.
+- By default the allowed file formats are: mp3, wav, ogg, flac, aac. If you need to change them, please refer to the customization section.
 
 ## Customization
 
-If you need to change the input folder or the output folder for the splitted audio segments, you can do so by modifying the following lines in the `audio_splitter.py` file:
-
+If you need to change the input folder or the output folder for the splitted audio segments, you can do so by modifying the following lines in the `main.py` file:
 ```python
 input_folder = "audio_to_split"
 output_folder = "splitted_audios"
-
+```
 Replace "audio_to_split" with the path to the folder containing your input audio file, and "splitted_audios" with the desired output folder path.
+***
+If you need to change the allowed file formats you can do so by modifying the following line in the `main.py` file:
 
-License
+```python
+audio_extensions = [".mp3", ".wav", ".ogg", ".flac", ".aac"]
+```
+Add or remove any audo file format (make sure to not provide non audio file or the program will not work)
+
+## License
 This program is provided under the MIT License. Feel free to use and modify it according to your needs.
 
-Disclaimer
+## Disclaimer
 The author of this program is not responsible for any misuse or damages caused by the use of this software. Always ensure you have the necessary rights to use and modify the audio files.
