@@ -24,7 +24,7 @@ Note: You also need to have FFmpeg installed on your system to enable audio file
 4. Run the program using the following command:
 
 ```cmd
-python audio_splitter.py
+python main.py
 ```
 
 ## Important Notes
