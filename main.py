@@ -1,13 +1,17 @@
 import os
 from pydub import AudioSegment
 
+AUDIO_EXTENSIONS = [".mp3", ".wav", ".ogg", ".flac", ".aac"]
+
 
 def is_audio_file(file_path):
-    audio_extensions = [".mp3", ".wav", ".ogg", ".flac", ".aac"]
-    return os.path.splitext(file_path)[1].lower() in audio_extensions
+    return os.path.splitext(file_path)[1].lower() in AUDIO_EXTENSIONS
 
 
 def split_audio(input_file, output_folder):
+    if os.path.basename(input_file) == ".gitkeep":
+        return
+
     try:
         audio = AudioSegment.from_file(input_file)
     except Exception as e:
@@ -29,6 +33,7 @@ def split_audio(input_file, output_folder):
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
     else:
+        # Remove all files from the output folder
         for file_name in os.listdir(output_folder):
             file_path = os.path.join(output_folder, file_name)
             if os.path.isfile(file_path):
@@ -53,6 +58,9 @@ if __name__ == "__main__":
     else:
         audio_files = [file for file in os.listdir(
             input_folder) if os.path.isfile(os.path.join(input_folder, file))]
+
+        audio_files = [file for file in audio_files if file != ".gitkeep"]
+
         if len(audio_files) != 1:
             print("The program can only work with one file at a time. Make sure you have only one audio file in the 'audio_to_split' folder.")
         else:
