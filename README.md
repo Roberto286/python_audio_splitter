@@ -27,6 +27,8 @@ Note: You also need to have FFmpeg installed on your system to enable audio file
 python main.py
 ```
 
+5. If the conversion was successful, you will find your clips in the "splitted_audios" folder that the program has created.
+
 ## Important Notes
 
 - The audio file must be at least 10 seconds long for the program to work correctly.
